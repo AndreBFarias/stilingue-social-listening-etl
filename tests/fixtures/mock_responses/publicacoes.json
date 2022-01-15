@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "posted_at": "2026-03-04 14:30:00",
+      "groups": ["Marca Principal"],
+      "sentiment": 1,
+      "post_url": "https://example.com/post/1",
+      "text": "Excelente atendimento ao cliente",
+      "channel": "Twitter",
+      "interactions": 150,
+      "likes": 100,
+      "comments": 30,
+      "shares": 20,
+      "themes": ["Atendimento", "Marca"],
+      "tags": ["positivo"],
+      "pid": "abc123",
+      "followers": 5000,
+      "AAA_score": 7.5,
+      "critical_level": 0
+    },
+    {
+      "posted_at": "2026-03-04 10:15:00",
+      "groups": ["Marca Principal", "Concorrente B"],
+      "sentiment": -1,
+      "post_url": "https://example.com/post/2",
+      "text": "Conta de luz muito alta",
+      "channel": "Facebook",
+      "interactions": 300,
+      "likes": 200,
+      "comments": 80,
+      "shares": 20,
+      "themes": ["Conta de Energia"],
+      "tags": ["reclamacao"],
+      "pid": "def456",
+      "followers": 1200,
+      "AAA_score": 3.2,
+      "critical_level": 2
+    }
+  ],
+  "next_offset": 0
+}

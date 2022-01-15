@@ -1,0 +1,35 @@
+# Caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtualenv
+.venv/
+venv/
+
+# Logs e dados
+logs/
+data/csv/**/*.csv
+
+# Build
+dist/
+build/
+*.spec
+*.egg-info/
+
+# Secrets
+.env
+*.key
+*.pem
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/

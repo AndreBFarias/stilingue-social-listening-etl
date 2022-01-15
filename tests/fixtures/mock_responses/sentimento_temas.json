@@ -1,0 +1,9 @@
+{
+  "data": {
+    "all": [
+      {"name": "Conta de Energia", "positive": 120, "negative": 890, "neutral": 340, "total": 1350},
+      {"name": "Marca", "positive": 500, "negative": 200, "neutral": 180, "total": 880},
+      {"name": "Atendimento", "positive": 80, "negative": 650, "neutral": 120, "total": 850}
+    ]
+  }
+}

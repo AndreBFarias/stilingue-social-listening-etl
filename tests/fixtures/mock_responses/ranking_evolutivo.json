@@ -1,0 +1,11 @@
+{
+  "data": [
+    {"name": "Marca A", "score": 27.5, "variation": 2},
+    {"name": "Marca B", "score": 17.3, "variation": -1},
+    {"name": "Marca C", "score": 10.5, "variation": 0},
+    {"name": "Marca D", "score": 3.2, "variation": 1},
+    {"name": "Marca E", "score": -20.8, "variation": -2},
+    {"name": "Marca F", "score": -22.1, "variation": 0},
+    {"name": "Marca G", "score": -33.7, "variation": -1}
+  ]
+}
