@@ -1,10 +1,18 @@
+import sys
 from datetime import date, datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
 import os
 
-_BASE_DIR = Path(__file__).resolve().parent.parent
+
+def _resolve_base_dir() -> Path:
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent.parent
+
+
+_BASE_DIR = _resolve_base_dir()
 load_dotenv(_BASE_DIR / ".env")
 
 
@@ -25,6 +33,7 @@ class Config:
     REQUEST_SLEEP_BETWEEN: int = int(os.getenv("REQUEST_SLEEP_BETWEEN", "1"))
     RANKING_EVOLUTIVO_DAYS: int = int(os.getenv("RANKING_EVOLUTIVO_DAYS", "30"))
     TEMAS_LIMIT: int = int(os.getenv("TEMAS_LIMIT", "50"))
+    BACKFILL_DAYS: int = int(os.getenv("BACKFILL_DAYS", "90"))
     RETROATIVO_INICIO: date | None = _parse_date(os.getenv("RETROATIVO_INICIO", ""))
     RETROATIVO_FIM: date | None = _parse_date(os.getenv("RETROATIVO_FIM", ""))
 

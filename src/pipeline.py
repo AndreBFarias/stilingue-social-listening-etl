@@ -14,7 +14,7 @@ from src.extractors.sentimento_temas import extrair_sentimento_temas
 from src.extractors.linechart import extrair_linechart
 from src.extractors.publicacoes import extrair_publicacoes
 from src.extractors.ranking_evolutivo import extrair_ranking_evolutivo
-from src.loaders.csv_writer import salvar_csv
+from src.loaders.csv_writer import salvar_csv, csv_ja_existe
 
 
 def _configurar_logging() -> None:
@@ -46,6 +46,21 @@ def _calcular_date_range_periodo(inicio: date, fim: date) -> str:
     return f"{dr_inicio}:{dr_fim}"
 
 
+def _precisa_backfill() -> bool:
+    endpoints = [
+        "visao_geral", "sentimento_grupos", "sentimento_temas",
+        "linechart", "publicacoes", "ranking_evolutivo",
+    ]
+    for ep in endpoints:
+        pasta = config.OUTPUT_DIR / ep
+        if not pasta.exists():
+            return True
+        csvs = list(pasta.glob("*.csv"))
+        if not csvs:
+            return True
+    return False
+
+
 def _executar_dia(
     api: StillingueAPI,
     date_range: str,
@@ -64,6 +79,10 @@ def _executar_dia(
     ]
 
     for nome, extrator in etapas:
+        if csv_ja_existe(nome, data_str):
+            logger.info(f"Pulando {nome} ({data_str}): CSV ja existe")
+            resultados[nome] = {"status": "pulado"}
+            continue
         try:
             logger.info(f"Executando: {nome}")
             registros = extrator()
@@ -92,6 +111,11 @@ def _executar_retroativo(api: StillingueAPI, inicio: date, fim: date) -> dict[st
         logger.info(f"Retroativo: processando {data_str}")
 
         for nome in endpoints_simples:
+            chave = f"{nome}_{data_str}"
+            if csv_ja_existe(nome, data_str):
+                logger.info(f"Pulando {nome} ({data_str}): CSV ja existe")
+                resultados_totais[chave] = {"status": "pulado"}
+                continue
             etapa_map = {
                 "visao_geral": lambda: extrair_visao_geral(api, date_range, dia_atual),
                 "sentimento_grupos": lambda: extrair_sentimento_grupos(api, date_range, dia_atual),
@@ -103,12 +127,11 @@ def _executar_retroativo(api: StillingueAPI, inicio: date, fim: date) -> dict[st
                 logger.info(f"Executando: {nome} ({data_str})")
                 registros = etapa_map[nome]()
                 arquivo = salvar_csv(registros, nome, data_str)
-                chave = f"{nome}_{data_str}"
                 resultados_totais[chave] = {"status": "sucesso", "linhas": len(registros), "arquivo": str(arquivo)}
                 time.sleep(config.REQUEST_SLEEP_BETWEEN)
             except Exception as e:
                 logger.error(f"Erro no endpoint {nome} ({data_str}): {e}")
-                resultados_totais[f"{nome}_{data_str}"] = {"status": "falha", "erro": str(e)}
+                resultados_totais[chave] = {"status": "falha", "erro": str(e)}
 
         dia_atual += timedelta(days=1)
 
@@ -148,16 +171,24 @@ def executar_pipeline() -> None:
 
     if modo_retroativo:
         logger.info(
-            f"Modo retroativo: {config.RETROATIVO_INICIO} ate {config.RETROATIVO_FIM}"
+            f"Modo retroativo manual: {config.RETROATIVO_INICIO} ate {config.RETROATIVO_FIM}"
         )
         resultados = _executar_retroativo(api, config.RETROATIVO_INICIO, config.RETROATIVO_FIM)
+    elif _precisa_backfill():
+        hoje = date.today()
+        inicio = hoje - timedelta(days=config.BACKFILL_DAYS)
+        fim = hoje - timedelta(days=1)
+        logger.info(
+            f"Backfill automatico: {inicio} ate {fim} ({config.BACKFILL_DAYS} dias)"
+        )
+        resultados = _executar_retroativo(api, inicio, fim)
     else:
         ontem = datetime.now() - timedelta(days=config.DAYS_BACK)
         data_referencia = ontem.date()
         data_str = data_referencia.strftime("%Y%m%d")
         date_range = _calcular_date_range_dia(data_referencia)
 
-        logger.info(f"Periodo: {date_range} | Data referencia: {data_str}")
+        logger.info(f"Modo diario | Periodo: {date_range} | Data referencia: {data_str}")
         resultados = _executar_dia(api, date_range, data_str, data_referencia)
 
     client.close()
@@ -166,8 +197,11 @@ def executar_pipeline() -> None:
     logger.info(f"Pipeline concluido em {duracao}s")
     logger.info("Resumo:")
     for nome, info in resultados.items():
-        if info["status"] == "sucesso":
+        status = info["status"]
+        if status == "sucesso":
             logger.info(f"  {nome}: {info['linhas']} linhas")
+        elif status == "pulado":
+            logger.info(f"  {nome}: pulado (CSV ja existe)")
         else:
             logger.error(f"  {nome}: FALHA - {info['erro']}")
 

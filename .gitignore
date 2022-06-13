@@ -12,10 +12,10 @@ logs/
 data/csv/**/*.csv
 
 # Build
-dist/
 build/
-*.spec
 *.egg-info/
+dist/stilingue-etl/stilingue_etl
+dist/stilingue-etl/stilingue_etl.exe
 
 # Secrets
 .env
