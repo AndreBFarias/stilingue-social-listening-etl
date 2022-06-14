@@ -119,3 +119,9 @@ stilingue-social-listening-etl/
 - Textos de publicações podem conter dados pessoais. Os CSVs gerados devem ser tratados como dados sensíveis conforme LGPD.
 - A API pode retornar campos de texto vazios quando a plataforma aplica anonimização. Isso é comportamento esperado.
 - Restrinja o acesso aos diretórios `data/csv/` e `logs/` apenas a usuários autorizados.
+
+---
+
+## Licença
+
+Distribuído sob a [GPLv3](LICENSE).
