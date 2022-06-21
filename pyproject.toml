@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "stilingue-social-listening-etl"
+version = "1.1.0"
+description = "Pipeline de ETL para coleta e exportação de dados do Stilingue Social Listening"
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "pandas>=2.1.0",
+    "loguru>=0.7.0",
+    "tenacity>=8.2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4.0", "pyinstaller>=6.3.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
