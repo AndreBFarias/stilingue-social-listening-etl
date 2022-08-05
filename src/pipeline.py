@@ -15,6 +15,7 @@ from src.extractors.linechart import extrair_linechart
 from src.extractors.publicacoes import extrair_publicacoes
 from src.extractors.ranking_evolutivo import extrair_ranking_evolutivo
 from src.loaders.csv_writer import salvar_csv, csv_ja_existe
+from src.loaders.consolidador import consolidar_todos
 
 
 def _configurar_logging() -> None:
@@ -44,6 +45,44 @@ def _calcular_date_range_periodo(inicio: date, fim: date) -> str:
     dr_inicio = f"{inicio.strftime('%Y%m%d')}0000"
     dr_fim = f"{fim.strftime('%Y%m%d')}2359"
     return f"{dr_inicio}:{dr_fim}"
+
+
+def _calcular_dias_faltantes() -> list[date]:
+    endpoints = [
+        "visao_geral", "sentimento_grupos", "sentimento_temas",
+        "linechart", "publicacoes", "ranking_evolutivo",
+    ]
+    datas_maximas: list[date] = []
+    for ep in endpoints:
+        pasta = config.OUTPUT_DIR / ep
+        if not pasta.exists():
+            return []
+        csvs = list(pasta.glob("*.csv"))
+        if not csvs:
+            return []
+        datas_ep: list[date] = []
+        for csv in csvs:
+            try:
+                datas_ep.append(datetime.strptime(csv.stem, "%Y%m%d").date())
+            except ValueError:
+                continue
+        if not datas_ep:
+            return []
+        datas_maximas.append(max(datas_ep))
+
+    data_mais_recente = min(datas_maximas)
+    ontem = date.today() - timedelta(days=1)
+
+    if data_mais_recente >= ontem:
+        return []
+
+    dias: list[date] = []
+    dia = data_mais_recente + timedelta(days=1)
+    while dia <= ontem:
+        dias.append(dia)
+        dia += timedelta(days=1)
+
+    return dias
 
 
 def _precisa_backfill() -> bool:
@@ -161,7 +200,7 @@ def executar_pipeline() -> None:
     _configurar_logging()
     config.validate()
 
-    logger.info("Iniciando pipeline Stilingue Social Listening")
+    logger.info("Iniciando pipeline Stilingue-Energisa")
     inicio_exec = time.time()
 
     client = HTTPClient()
@@ -183,15 +222,28 @@ def executar_pipeline() -> None:
         )
         resultados = _executar_retroativo(api, inicio, fim)
     else:
-        ontem = datetime.now() - timedelta(days=config.DAYS_BACK)
-        data_referencia = ontem.date()
-        data_str = data_referencia.strftime("%Y%m%d")
-        date_range = _calcular_date_range_dia(data_referencia)
+        dias_faltantes = _calcular_dias_faltantes()
+        if dias_faltantes:
+            logger.info(
+                f"Gap detectado: {len(dias_faltantes)} dias faltantes "
+                f"({dias_faltantes[0]} ate {dias_faltantes[-1]})"
+            )
+            resultados = _executar_retroativo(api, dias_faltantes[0], dias_faltantes[-1])
+        else:
+            ontem = datetime.now() - timedelta(days=config.DAYS_BACK)
+            data_referencia = ontem.date()
+            data_str = data_referencia.strftime("%Y%m%d")
+            date_range = _calcular_date_range_dia(data_referencia)
 
-        logger.info(f"Modo diario | Periodo: {date_range} | Data referencia: {data_str}")
-        resultados = _executar_dia(api, date_range, data_str, data_referencia)
+            logger.info(f"Modo diario | Periodo: {date_range} | Data referencia: {data_str}")
+            resultados = _executar_dia(api, date_range, data_str, data_referencia)
 
     client.close()
+
+    logger.info("Consolidando CSVs unificados")
+    caminhos = consolidar_todos()
+    for ep, caminho in caminhos.items():
+        logger.info(f"  {ep}: {caminho}")
 
     duracao = round(time.time() - inicio_exec, 2)
     logger.info(f"Pipeline concluido em {duracao}s")
