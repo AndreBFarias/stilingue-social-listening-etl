@@ -35,6 +35,7 @@ class Config:
     RANKING_EVOLUTIVO_DAYS: int = int(os.getenv("RANKING_EVOLUTIVO_DAYS", "30"))
     TEMAS_LIMIT: int = int(os.getenv("TEMAS_LIMIT", "50"))
     BACKFILL_DAYS: int = int(os.getenv("BACKFILL_DAYS", "90"))
+    CONSOLIDADO_DATA_MINIMA: date = _parse_date(os.getenv("CONSOLIDADO_DATA_MINIMA", "2026-01-01"))
     RETROATIVO_INICIO: date | None = _parse_date(os.getenv("RETROATIVO_INICIO", ""))
     RETROATIVO_FIM: date | None = _parse_date(os.getenv("RETROATIVO_FIM", ""))
 
