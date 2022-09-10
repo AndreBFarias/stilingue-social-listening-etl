@@ -243,7 +243,7 @@ def executar_pipeline() -> None:
 
     client.close()
 
-    logger.info("Consolidando CSVs unificados")
+    logger.info(f"Consolidando arquivos unificados (formato: {config.CONSOLIDADO_FORMATO})")
     caminhos = consolidar_todos()
     for ep, caminho in caminhos.items():
         logger.info(f"  {ep}: {caminho}")
