@@ -1,33 +1,32 @@
-# Contribuindo com stilingue-energisa-etl
+# Contribuindo com Social Listening ETL
 
-## Configuração do ambiente
+## Configuracao do ambiente
 
-1. Clone o repositório
-2. Instale as dependências: `pip install -r requirements.txt`
-3. Configure as variáveis de ambiente conforme `.env.example`
+1. Clone o repositorio
+2. Instale as dependencias: `pip install -r requirements.txt`
+3. Configure as variaveis de ambiente conforme `.env.example`
 
-## Fluxo de contribuição
+## Fluxo de contribuicao
 
-1. Abra uma issue descrevendo a mudança proposta
-2. Faça fork do repositório
+1. Abra uma issue descrevendo a mudanca proposta
+2. Faca fork do repositorio
 3. Crie um branch: `git checkout -b fix/nome-da-correcao`
-4. Implemente as mudanças
+4. Implemente as mudancas
 5. Abra um Pull Request referenciando a issue
 
-## Padrões de código
+## Padroes de codigo
 
-- Python 3.9+
-- Type hints obrigatórios
-- Docstrings em PT-BR
-- Logging via `logging` padrão (nunca `print()`)
-- Formatação: seguir PEP 8
+- Python 3.10+
+- Type hints obrigatorios
+- Logging via loguru (nunca `print()`)
+- Formatacao: seguir PEP 8
 
 ## Mensagens de commit
 
-Formato: `tipo: descrição imperativa em PT-BR`
+Formato: `tipo: descricao imperativa em PT-BR`
 
 Tipos: `feat`, `fix`, `refactor`, `docs`, `test`, `perf`, `chore`
 
-## Licença
+## Licenca
 
-Ao contribuir, você concorda que suas contribuições serão licenciadas sob GPLv3.
+Ao contribuir, voce concorda que suas contribuicoes serao licenciadas sob GPLv3.

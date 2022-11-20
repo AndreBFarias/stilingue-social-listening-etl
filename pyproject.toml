@@ -3,12 +3,12 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.backends.legacy:build"
 
 [project]
-name = "stilingue-energisa-etl"
-version = "1.1.0"
-description = "ETL corporativo para dados de energia elétrica - integração Stilingue"
+name = "stilingue-social-listening-etl"
+version = "2.0.0"
+description = "Pipeline ETL + Dashboard interativo para Social Listening via API Stilingue"
 readme = "README.md"
 license = {text = "GPL-3.0-or-later"}
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "requests==2.31.0",
     "python-dotenv==1.0.0",
@@ -16,6 +16,8 @@ dependencies = [
     "pyarrow>=14.0.0",
     "loguru==0.7.2",
     "tenacity==8.2.3",
+    "streamlit>=1.30.0",
+    "plotly>=5.18.0",
 ]
 
 [project.optional-dependencies]
@@ -25,8 +27,8 @@ dev = [
 ]
 
 [project.scripts]
-energisa-etl = "src.pipeline:executar_pipeline"
+social-listening-etl = "src.pipeline:executar_pipeline"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src*"]
+include = ["src*", "dashboard*"]
