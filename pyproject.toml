@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.backends.legacy:build"
 
 [project]
-name = "stilingue-social-listening-etl"
+name = "whisper-pulse"
 version = "2.0.0"
-description = "Pipeline ETL + Dashboard interativo para Social Listening via API Stilingue"
+description = "Pipeline ETL + Dashboard interativo para Social Listening via API de social listening"
 readme = "README.md"
 license = {text = "GPL-3.0-or-later"}
 requires-python = ">=3.10"

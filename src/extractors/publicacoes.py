@@ -4,7 +4,7 @@ from typing import Any
 
 from loguru import logger
 
-from src.api.endpoints import StillingueAPI
+from src.api.endpoints import SocialListeningAPI
 from src.config import config
 from src.extractors import validar_resposta
 
@@ -27,7 +27,7 @@ def _normalizar_data_publicacao(valor: str) -> str:
     return valor
 
 
-def extrair_publicacoes(api: StillingueAPI, date_range: str, data_referencia: date) -> list[dict[str, Any]]:
+def extrair_publicacoes(api: SocialListeningAPI, date_range: str, data_referencia: date) -> list[dict[str, Any]]:
     logger.info("Extraindo publicacoes (com paginacao)")
 
     offset = 0

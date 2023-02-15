@@ -3,11 +3,11 @@ from typing import Any
 
 from loguru import logger
 
-from src.api.endpoints import StillingueAPI
+from src.api.endpoints import SocialListeningAPI
 from src.extractors import validar_resposta
 
 
-def extrair_sentimento_grupos(api: StillingueAPI, date_range: str, data_referencia: date) -> list[dict[str, Any]]:
+def extrair_sentimento_grupos(api: SocialListeningAPI, date_range: str, data_referencia: date) -> list[dict[str, Any]]:
     logger.info("Extraindo sentimento_grupos")
     response = api.sentimento_grupos(date_range)
     validar_resposta(response)

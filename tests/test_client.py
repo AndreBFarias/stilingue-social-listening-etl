@@ -12,7 +12,7 @@ FIXTURES = Path(__file__).parent / "fixtures" / "mock_responses"
 
 def _mock_config():
     mock = MagicMock()
-    mock.BASE_URL = "https://api.stilingue.com.br"
+    mock.BASE_URL = "https://api.example.com"
     mock.API_TOKEN = "123456789"
     mock.REQUEST_TIMEOUT = 60
     return mock
@@ -42,7 +42,7 @@ def _mock_response_status(status_code: int) -> MagicMock:
 def test_build_url():
     client = HTTPClient()
     url = client._build_url("visao_geral")
-    assert url == "https://api.stilingue.com.br/wrapi/visao_geral/123456789"
+    assert url == "https://api.example.com/wrapi/visao_geral/123456789"
     client.close()
 
 

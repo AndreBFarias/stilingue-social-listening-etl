@@ -7,7 +7,7 @@ from loguru import logger
 
 from src.config import config
 from src.api.client import HTTPClient
-from src.api.endpoints import StillingueAPI
+from src.api.endpoints import SocialListeningAPI
 from src.extractors.visao_geral import extrair_visao_geral
 from src.extractors.sentimento_grupos import extrair_sentimento_grupos
 from src.extractors.sentimento_temas import extrair_sentimento_temas
@@ -82,7 +82,7 @@ def _calcular_dias_faltantes(inicio: date, fim: date) -> list[date]:
     return dias
 
 
-def _executar_periodo(api: StillingueAPI, inicio: date, fim: date) -> dict[str, dict]:
+def _executar_periodo(api: SocialListeningAPI, inicio: date, fim: date) -> dict[str, dict]:
     resultados_totais: dict[str, dict] = {}
 
     endpoints_simples = [
@@ -154,11 +154,11 @@ def executar_pipeline() -> None:
     _configurar_logging()
     config.validate()
 
-    logger.info("Iniciando pipeline Stilingue")
+    logger.info("Iniciando pipeline de social listening")
     inicio_exec = time.time()
 
     client = HTTPClient()
-    api = StillingueAPI(client)
+    api = SocialListeningAPI(client)
 
     ontem = date.today() - timedelta(days=1)
     modo_retroativo = config.RETROATIVO_INICIO and config.RETROATIVO_FIM

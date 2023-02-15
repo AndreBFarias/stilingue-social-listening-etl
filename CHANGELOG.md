@@ -14,5 +14,5 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ### Adicionado
 - Implementação inicial do ETL corporativo
-- Integração com API da Stilingue
+- Integração com API da social listening
 - Schemas de validação de dados

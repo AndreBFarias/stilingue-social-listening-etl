@@ -4,7 +4,7 @@ from src.api.client import HTTPClient
 from src.config import config
 
 
-class StillingueAPI:
+class SocialListeningAPI:
     def __init__(self, client: HTTPClient) -> None:
         self._client = client
 

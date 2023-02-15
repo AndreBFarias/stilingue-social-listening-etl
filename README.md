@@ -15,8 +15,8 @@ Projeto real de engenharia de dados aplicada, cobrindo todo o ciclo: **extracao 
 ## Quick Start
 
 ```bash
-git clone https://github.com/[REDACTED]/stilingue-social-listening-etl.git
-cd stilingue-social-listening-etl
+git clone https://github.com/[REDACTED]/whisper-pulse.git
+cd whisper-pulse
 pip install -r requirements.txt
 
 # Gerar dados de demonstracao
@@ -203,8 +203,8 @@ O que este projeto demonstra:
 ### Instalacao
 
 ```bash
-git clone https://github.com/[REDACTED]/stilingue-social-listening-etl.git
-cd stilingue-social-listening-etl
+git clone https://github.com/[REDACTED]/whisper-pulse.git
+cd whisper-pulse
 pip install -r requirements.txt
 cp .env.example .env
 ```
@@ -237,7 +237,7 @@ Gera 4 arquivos HTML em `relatorios/` -- abrem direto no navegador, sem servidor
 ## Estrutura do Projeto
 
 ```
-stilingue-social-listening-etl/
+whisper-pulse/
   src/
     config.py                # Configuracao via .env
     api/

@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 echo ============================================
-echo   Build - Stilingue ETL (Windows .exe)
+echo   Build - Whisper-Pulse ETL (Windows .exe)
 echo ============================================
 echo.
 
@@ -46,28 +46,28 @@ pip install pyinstaller >nul 2>&1
 echo.
 echo Limpando build anterior...
 if exist "build" rmdir /s /q "build"
-if exist "dist\stilingue_etl.exe" del /f /q "dist\stilingue_etl.exe"
+if exist "dist\whisper_pulse.exe" del /f /q "dist\whisper_pulse.exe"
 
 echo.
 echo Gerando executavel com PyInstaller...
-pyinstaller stilingue_etl.spec --noconfirm
+pyinstaller whisper_pulse.spec --noconfirm
 if %errorlevel% neq 0 (
     echo ERRO: Falha ao gerar executavel.
     pause
     exit /b 1
 )
 
-set "DIST_DIR=%PROJECT_DIR%dist\stilingue-etl"
+set "DIST_DIR=%PROJECT_DIR%dist\whisper-pulse"
 echo.
 echo Montando pasta distribuivel em: %DIST_DIR%
 
 if not exist "%DIST_DIR%" mkdir "%DIST_DIR%"
 
-if exist "dist\stilingue_etl.exe" (
-    move /Y "dist\stilingue_etl.exe" "%DIST_DIR%\stilingue_etl.exe" >nul
-    echo   [OK] stilingue_etl.exe
+if exist "dist\whisper_pulse.exe" (
+    move /Y "dist\whisper_pulse.exe" "%DIST_DIR%\whisper_pulse.exe" >nul
+    echo   [OK] whisper_pulse.exe
 ) else (
-    echo ERRO: stilingue_etl.exe nao foi gerado.
+    echo ERRO: whisper_pulse.exe nao foi gerado.
     pause
     exit /b 1
 )
@@ -96,7 +96,7 @@ echo.
 echo Pasta distribuivel: %DIST_DIR%
 echo.
 echo Conteudo:
-echo   stilingue_etl.exe      - Executavel principal
+echo   whisper_pulse.exe      - Executavel principal
 echo   .env.example           - Template de configuracao
 echo   data\csv\              - Dados historicos
 echo   logs\                  - Logs de execucao

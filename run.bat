@@ -27,8 +27,8 @@ if not exist ".env" (
     )
 )
 
-if exist "stilingue_etl.exe" (
-    stilingue_etl.exe
+if exist "whisper_pulse.exe" (
+    whisper_pulse.exe
 ) else (
     python -m src
 )

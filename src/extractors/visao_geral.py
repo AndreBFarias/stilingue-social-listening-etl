@@ -3,11 +3,11 @@ from typing import Any
 
 from loguru import logger
 
-from src.api.endpoints import StillingueAPI
+from src.api.endpoints import SocialListeningAPI
 from src.extractors import validar_resposta
 
 
-def extrair_visao_geral(api: StillingueAPI, date_range: str, data_referencia: date) -> list[dict[str, Any]]:
+def extrair_visao_geral(api: SocialListeningAPI, date_range: str, data_referencia: date) -> list[dict[str, Any]]:
     logger.info("Extraindo visao_geral")
     response = api.visao_geral(date_range)
     validar_resposta(response, campo="collected_mentions")

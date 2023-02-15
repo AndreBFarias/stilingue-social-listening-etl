@@ -2,11 +2,11 @@ from typing import Any
 
 from loguru import logger
 
-from src.api.endpoints import StillingueAPI
+from src.api.endpoints import SocialListeningAPI
 from src.extractors import validar_resposta
 
 
-def extrair_linechart(api: StillingueAPI, date_range: str) -> list[dict[str, Any]]:
+def extrair_linechart(api: SocialListeningAPI, date_range: str) -> list[dict[str, Any]]:
     logger.info("Extraindo linechart")
     response = api.linechart(date_range)
     validar_resposta(response)

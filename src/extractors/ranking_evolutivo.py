@@ -3,11 +3,11 @@ from typing import Any
 
 from loguru import logger
 
-from src.api.endpoints import StillingueAPI
+from src.api.endpoints import SocialListeningAPI
 from src.extractors import validar_resposta
 
 
-def extrair_ranking_evolutivo(api: StillingueAPI, date_range: str) -> list[dict[str, Any]]:
+def extrair_ranking_evolutivo(api: SocialListeningAPI, date_range: str) -> list[dict[str, Any]]:
     logger.info("Extraindo ranking_evolutivo")
     response = api.ranking_evolutivo(date_range)
     validar_resposta(response, campo="themes")

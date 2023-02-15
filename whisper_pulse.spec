@@ -58,7 +58,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name="stilingue_etl",
+    name="whisper_pulse",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
