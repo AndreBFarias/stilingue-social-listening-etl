@@ -1,32 +1,32 @@
-# Contribuindo com Social Listening ETL
+# Contribuindo com Whisper-Pulse
 
-## Configuracao do ambiente
+## Configuração do ambiente
 
-1. Clone o repositorio
-2. Instale as dependencias: `pip install -r requirements.txt`
-3. Configure as variaveis de ambiente conforme `.env.example`
+1. Clone o repositório
+2. Instale as dependências: `pip install -r requirements.txt`
+3. Configure as variáveis de ambiente conforme `.env.example`
 
-## Fluxo de contribuicao
+## Fluxo de contribuição
 
-1. Abra uma issue descrevendo a mudanca proposta
-2. Faca fork do repositorio
-3. Crie um branch: `git checkout -b fix/nome-da-correcao`
-4. Implemente as mudancas
+1. Abra uma issue descrevendo a mudança proposta
+2. Faça fork do repositório
+3. Crie um branch: `git checkout -b fix/nome-da-correção`
+4. Implemente as mudanças
 5. Abra um Pull Request referenciando a issue
 
-## Padroes de codigo
+## Padrões de código
 
 - Python 3.10+
-- Type hints obrigatorios
+- Type hints obrigatórios
 - Logging via loguru (nunca `print()`)
-- Formatacao: seguir PEP 8
+- Formatação: seguir PEP 8
 
 ## Mensagens de commit
 
-Formato: `tipo: descricao imperativa em PT-BR`
+Formato: `tipo: descrição imperativa em PT-BR`
 
 Tipos: `feat`, `fix`, `refactor`, `docs`, `test`, `perf`, `chore`
 
-## Licenca
+## Licença
 
-Ao contribuir, voce concorda que suas contribuicoes serao licenciadas sob GPLv3.
+Ao contribuir, você concorda que suas contribuições serão licenciadas sob GPLv3.

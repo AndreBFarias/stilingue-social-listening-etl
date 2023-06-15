@@ -1,25 +1,26 @@
-# Social Listening ETL + Dashboard
+# Whisper-Pulse
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.1-150458?style=flat-square&logo=pandas&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
-![Plotly](https://img.shields.io/badge/Plotly-Graficos-3F4F75?style=flat-square&logo=plotly&logoColor=white)
-![License](https://img.shields.io/badge/Licenca-GPL--3.0-blue?style=flat-square)
+![Plotly](https://img.shields.io/badge/Plotly-Gráficos-3F4F75?style=flat-square&logo=plotly&logoColor=white)
+![License](https://img.shields.io/badge/Licença-GPL--3.0-blue?style=flat-square)
+[![CI](https://github.com/AndreBFarias/Whisper-Pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/AndreBFarias/Whisper-Pulse/actions/workflows/ci.yml)
 
-Pipeline ETL completa + dashboard analitico interativo para **monitoramento de marca em redes sociais**. Consome API REST de social listening, transforma dados em 6 tabelas estruturadas e apresenta os resultados em 4 paginas de analise com graficos interativos.
+Pipeline ETL completa + dashboard analítico interativo para **monitoramento de marca em redes sociais**. Consome API REST de social listening, transforma dados em 6 tabelas estruturadas e apresenta os resultados em 4 páginas de análise com gráficos interativos.
 
-Projeto real de engenharia de dados aplicada, cobrindo todo o ciclo: **extracao -> transformacao -> carga -> visualizacao**.
+Projeto real de engenharia de dados aplicada, cobrindo todo o ciclo: **extração -> transformação -> carga -> visualização**.
 
 ---
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/[REDACTED]/whisper-pulse.git
-cd whisper-pulse
+git clone https://github.com/AndreBFarias/Whisper-Pulse.git
+cd Whisper-Pulse
 pip install -r requirements.txt
 
-# Gerar dados de demonstracao
+# Gerar dados de demonstração
 python scripts/gerar_dados_amostra.py
 
 # Abrir o dashboard
@@ -30,37 +31,37 @@ Acesse `http://localhost:8501` no navegador.
 
 ---
 
-## Dashboard -- 4 Paginas de Analise
+## Dashboard -- 4 Páginas de Análise
 
-### Pagina 1: Visao Executiva
+### Página 1: Visão Executiva
 
 ```
 +------------------------------------------------------------------+
-|  Social Listening -- Visao Executiva      [===periodo===]         |
+|  Social Listening -- Visão Executiva      [===período===]         |
 +------------------------------------------------------------------+
-| [OVERVIEW]   [MIDIA]   [CANAIS DE ATENDIMENTO]   [SAC/SOCIAL]    |
+| [OVERVIEW]   [MÍDIA]   [CANAIS DE ATENDIMENTO]   [SAC/SOCIAL]    |
 +------------------------------------------------------------------+
 |                                                                   |
 | +--------+ +--------+ +--------+ +--------+ +--------+ +-------+ |
-| | Saude  | |Volume  | |Alcance | |Intera- | | Media  | |Posicao| |
-| | -15,2% | |173.573 | | 26,7Mi | |1,2 Mi  | | Diaria | |  #1   | |
+| | Saúde  | |Volume  | |Alcance | |Intera- | | Média  | |Posição| |
+| | -15,2% | |173.573 | | 26,7Mi | |1,2 Mi  | | Diária | |  #1   | |
 | | +1,9pts | |        | |        | |        | | 1.928  | |       | |
 | +--------+ +--------+ +--------+ +--------+ +--------+ +-------+ |
 |                                                                   |
 | +---------------------------+ +----------------------------+      |
-| | Interacoes x Saude        | | Favorabilidade por Mes     |      |
+| | Interações x Saúde        | | Favorabilidade por Mês     |      |
 | | [barras empilhadas]       | | [barras empilhadas]        |      |
-| | + linha Saude da Marca    | | + linha Favorabilidade %   |      |
+| | + linha Saúde da Marca    | | + linha Favorabilidade %   |      |
 | +---------------------------+ +----------------------------+      |
 |                                                                   |
 | +---------------------------+ +----------------------------+      |
-| | Distribuicao por Canal    | | Sentimento Geral           |      |
+| | Distribuição por Canal    | | Sentimento Geral           |      |
 | | [rosca interativa]        | | [rosca: pos/neu/neg]       |      |
 | +---------------------------+ +----------------------------+      |
 +------------------------------------------------------------------+
 ```
 
-### Pagina 2: Midia
+### Página 2: Mídia
 
 ```
 +------------------------------------------------------------------+
@@ -77,41 +78,41 @@ Acesse `http://localhost:8501` no navegador.
 | +---------------------------+ +----------------------------+      |
 |                                                                   |
 | +---------------------------+ +----------------------------+      |
-| | Canais x Saude [tabela]   | | Evolucao Diaria [linha]   |      |
-| | Canal|Mencoes|%Pos|Saude  | | 90 dias, area preenchida  |      |
+| | Canais x Saúde [tabela]   | | Evolução Diária [linha]   |      |
+| | Canal|Menções|%Pos|Saúde  | | 90 dias, área preenchida  |      |
 | +---------------------------+ +----------------------------+      |
 +------------------------------------------------------------------+
 ```
 
-### Pagina 3: Sentimento por Marca
+### Página 3: Sentimento por Marca
 
 ```
 +------------------------------------------------------------------+
 | +----------+ +-----------+ +-------------+ +----------------+    |
-| |Favorab.  | |Saude Conc.| |Polaridade   | |Polaridade      |    |
+| |Favorab.  | |Saúde Conc.| |Polaridade   | |Polaridade      |    |
 | | -15,8%   | | -14,5%    | |Marca Princ. | |Concorrentes    |    |
 | +----------+ +-----------+ |[rosca]      | |[rosca]         |    |
 |                             +-------------+ +----------------+    |
 |                                                                   |
 | +--------------------------------------------------------------+ |
-| | Ranking Saude da Marca (todas as marcas)                      | |
+| | Ranking Saúde da Marca (todas as marcas)                      | |
 | | [barras horizontais com cor condicional: verde > 0, verm < 0] | |
 | +--------------------------------------------------------------+ |
 |                                                                   |
 | +--------------------------------------------------------------+ |
-| | Saude Mensal por Marca [heatmap]                              | |
-| | Linhas: marcas | Colunas: meses | Valores: score saude       | |
+| | Saúde Mensal por Marca [heatmap]                              | |
+| | Linhas: marcas | Colunas: meses | Valores: score saúde       | |
 | | Escala: vermelho (-) -> branco (0) -> verde (+)               | |
 | +--------------------------------------------------------------+ |
 +------------------------------------------------------------------+
 ```
 
-### Pagina 4: Publicacoes e Temas
+### Página 4: Publicações e Temas
 
 ```
 +------------------------------------------------------------------+
 | +--------+ +--------+ +--------+ +--------+                      |
-| |Total   | |Engaj.  | |Posts   | |Indice  |                      |
+| |Total   | |Engaj.  | |Posts   | |Índice  |                      |
 | |Posts   | |/Post   | |Alto    | |de Crise|                      |
 | | 500    | | 2.464  | |Risco   | | 0      |                      |
 | +--------+ +--------+ +--------+ +--------+                      |
@@ -119,7 +120,7 @@ Acesse `http://localhost:8501` no navegador.
 | [Marca v]  [Sentimento v]  [Canal v]  [Tema v]   <- filtros      |
 |                                                                   |
 | +--------------------------------------------------------------+ |
-| | DATA     | MARCA   | SENT. | CANAL | TEXTO      | INTERACOES | |
+| | DATA     | MARCA   | SENT. | CANAL | TEXTO      | INTERAÇÕES | |
 | |----------|---------|-------|-------|------------|------------| |
 | | 23/03/26 | Marca D | Neg.  | Twit. | Atendim... | 4.521      | |
 | | 23/03/26 | Marca A | Pos.  | Inst. | Excelente. | 1.203      | |
@@ -128,27 +129,27 @@ Acesse `http://localhost:8501` no navegador.
 |                                                                   |
 | +---------------------------+ +----------------------------+      |
 | | Top Temas por Sentimento  | | Temas de Crise             |      |
-| | [barras empilhadas horiz] | | [tabela: tema, %, mencoes] |      |
+| | [barras empilhadas horiz] | | [tabela: tema, %, menções] |      |
 | +---------------------------+ +----------------------------+      |
 +------------------------------------------------------------------+
 ```
 
 ---
 
-## Destaques Tecnicos
+## Destaques Técnicos
 
 O que este projeto demonstra:
 
-- **ETL completa** -- extracao paginada com retry exponencial, transformacao com Pandas, carga incremental com deduplicacao
-- **Resiliencia** -- backoff exponencial, rate-limiting (HTTP 429), deteccao automatica de gaps e reconsolidacao
-- **23 metricas analiticas** -- saude da marca, share of voice, favorabilidade, indice de crise, variacao MoM
-- **Dashboard interativo** -- Streamlit com 4 paginas, filtros globais, paginacao, graficos Plotly
-- **Relatorios HTML estaticos** -- self-contained, abrem no navegador sem servidor
+- **ETL completa** -- extração paginada com retry exponencial, transformação com Pandas, carga incremental com deduplicação
+- **Resiliência** -- backoff exponencial, rate-limiting (HTTP 429), detecção automática de gaps e reconsolidação
+- **23 métricas analíticas** -- saúde da marca, share of voice, favorabilidade, índice de crise, variação MoM
+- **Dashboard interativo** -- Streamlit com 4 páginas, filtros globais, paginação, gráficos Plotly
+- **Relatórios HTML estáticos** -- self-contained, abrem no navegador sem servidor
 - **Arquitetura em camadas** -- api/ extractors/ transformers/ loaders/ dashboard/
 - **Observabilidade** -- logging rotacionado via Loguru, sem print()
 - **Agendamento** -- cron (Linux) e Task Scheduler (Windows)
-- **Configuracao via .env** -- marca principal auto-detectada, temas de alerta configuraveis
-- **Dados de demonstracao** -- gerador de dados ficticios para portfolio
+- **Configuração via .env** -- marca principal auto-detectada, temas de alerta configuráveis
+- **Dados de demonstração** -- gerador de dados fictícios para portfolio
 
 ---
 
@@ -156,11 +157,11 @@ O que este projeto demonstra:
 
 | Camada | Stack |
 |--------|-------|
-| Extracao | Python, Requests, Tenacity (retry com backoff) |
-| Transformacao | Pandas, PyArrow |
+| Extração | Python, Requests, Tenacity (retry com backoff) |
+| Transformação | Pandas, PyArrow |
 | Armazenamento | CSV estruturado (`;` separador), Parquet (opcional) |
 | Dashboard | Streamlit, Plotly |
-| Relatorio | HTML estatico com Plotly embutido (CDN) |
+| Relatório | HTML estático com Plotly embutido (CDN) |
 | Observabilidade | Loguru (logging rotacionado) |
 | Agendamento | cron (Linux), Task Scheduler (Windows) |
 
@@ -184,15 +185,15 @@ O que este projeto demonstra:
     linechart
     temas
           |             |             |
-          +-------> CSVs diarios -----+
+          +-------> CSVs diários ----+
                         |
                   [Consolidador]
                   merge + dedup + schema enforcement
                         |
               +---------+---------+
               |                   |
-        [Streamlit]         [HTML Estatico]
-        4 paginas           4 relatorios
+        [Streamlit]         [HTML Estático]
+        4 páginas           4 relatórios
         interativo          abre no navegador
 ```
 
@@ -200,22 +201,22 @@ O que este projeto demonstra:
 
 ## Pipeline ETL
 
-### Instalacao
+### Instalação
 
 ```bash
-git clone https://github.com/[REDACTED]/whisper-pulse.git
-cd whisper-pulse
+git clone https://github.com/AndreBFarias/Whisper-Pulse.git
+cd Whisper-Pulse
 pip install -r requirements.txt
 cp .env.example .env
 ```
 
-### Execucao
+### Execução
 
 ```bash
 python -m src
 ```
 
-A pipeline detecta automaticamente o ultimo dia processado e extrai apenas os dias faltantes.
+A pipeline detecta automaticamente o último dia processado e extrai apenas os dias faltantes.
 
 ### Modo retroativo
 
@@ -224,7 +225,7 @@ RETROATIVO_INICIO=2026-02-01
 RETROATIVO_FIM=2026-03-04
 ```
 
-### Relatorios HTML
+### Relatórios HTML
 
 ```bash
 python scripts/gerar_relatorio_html.py
@@ -237,53 +238,53 @@ Gera 4 arquivos HTML em `relatorios/` -- abrem direto no navegador, sem servidor
 ## Estrutura do Projeto
 
 ```
-whisper-pulse/
+Whisper-Pulse/
   src/
-    config.py                # Configuracao via .env
+    config.py                # Configuração via .env
     api/
       client.py              # HTTP client com retry
       endpoints.py           # Wrapper dos 6 endpoints
     extractors/              # 1 extractor por endpoint
-    transformers/            # Normalizacao e calculos
+    transformers/            # Normalização e cálculos
     loaders/
-      csv_writer.py          # CSV diario com dedup
+      csv_writer.py          # CSV diário com dedup
       consolidador.py        # Merge + ZIP LZMA
     pipeline.py              # Orquestrador principal
   dashboard/
     app.py                   # Streamlit entry point
     dados.py                 # Loader com cache
-    metricas.py              # 23 metricas analiticas
-    componentes.py           # Cards, graficos, tabelas
-    tema.py                  # Paleta e formatacao PT-BR
-    paginas/                 # 4 paginas do dashboard
+    metricas.py              # 23 métricas analíticas
+    componentes.py           # Cards, gráficos, tabelas
+    tema.py                  # Paleta e formatação PT-BR
+    paginas/                 # 4 páginas do dashboard
   scripts/
-    gerar_dados_amostra.py   # Gerador de dados ficticios
-    gerar_relatorio_html.py  # Exportacao HTML estatica
-  data/csv/                  # CSVs diarios (por endpoint/data)
+    gerar_dados_amostra.py   # Gerador de dados fictícios
+    gerar_relatorio_html.py  # Exportação HTML estática
+  data/csv/                  # CSVs diários (por endpoint/data)
   consolidado/               # CSVs consolidados
   relatorios/                # HTMLs gerados
-  tests/                     # Testes unitarios
+  tests/                     # Testes unitários
 ```
 
 ---
 
 ## 6 Tabelas de Dados
 
-| Tabela | Granularidade | Descricao |
+| Tabela | Granularidade | Descrição |
 |--------|--------------|-----------|
-| `visao_geral` | 1 linha/dia | KPIs globais: volume, usuarios, alcance, sentimento |
-| `sentimento_grupos` | marca x canal/dia | Polaridade e saude da marca por grupo |
+| `visao_geral` | 1 linha/dia | KPIs globais: volume, usuários, alcance, sentimento |
+| `sentimento_grupos` | marca x canal/dia | Polaridade e saúde da marca por grupo |
 | `sentimento_temas` | tema x canal/dia | Polaridade por tema categorizado |
-| `linechart` | 1 ponto/dia | Serie temporal de publicacoes |
+| `linechart` | 1 ponto/dia | Série temporal de publicações |
 | `publicacoes` | 1 linha/post | Texto, sentimento, engajamento, seguidores |
-| `ranking_evolutivo` | marca/dia | Posicao no ranking e total de mencoes |
+| `ranking_evolutivo` | marca/dia | Posição no ranking e total de menções |
 
 ---
 
-## Licenca
+## Licença
 
 GPL-3.0-or-later
 
 ---
 
-*"O que nao pode ser medido nao pode ser melhorado."*
+*"O que não pode ser medido não pode ser melhorado."*
