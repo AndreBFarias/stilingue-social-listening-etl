@@ -1,0 +1,58 @@
+name: Bug Report
+description: Reportar um bug no Whisper-Pulse
+title: "[BUG] "
+labels: ["bug"]
+
+body:
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição do Bug
+      description: Descreva o bug de forma clara e objetiva.
+      placeholder: O que aconteceu?
+    validations:
+      required: true
+
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para Reproduzir
+      description: Liste os passos para reproduzir o comportamento.
+      value: |
+        1. Configurar .env com '...'
+        2. Executar '...'
+        3. Observar o erro
+    validations:
+      required: true
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Comportamento Esperado
+      description: Descreva o que deveria acontecer.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: componente
+    attributes:
+      label: Componente Afetado
+      options:
+        - Pipeline ETL
+        - Dashboard Streamlit
+        - Relatórios HTML
+        - Consolidador
+        - Outro
+    validations:
+      required: true
+
+  - type: textarea
+    id: ambiente
+    attributes:
+      label: Ambiente
+      value: |
+        - SO: [ex: Pop!_OS 22.04, Windows 11]
+        - Python: [ex: 3.12]
+        - Whisper-Pulse: [ex: 2.0.0]
+    validations:
+      required: false
