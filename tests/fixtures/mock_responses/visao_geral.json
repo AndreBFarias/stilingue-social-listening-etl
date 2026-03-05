@@ -1,0 +1,24 @@
+{
+  "collected_mentions": 9875,
+  "collected_mentions_variation": 14,
+  "total_users": 6157,
+  "total_users_variation": 12,
+  "potential_reach": 77739074,
+  "potential_reach_variation": 25,
+  "net_promoter_score": -17,
+  "net_promoter_score_variation": 25,
+  "general_sentiment": {
+    "negative_value": 4500,
+    "neutral_value": 2100,
+    "positive_value": 3275,
+    "not_classified_value": 0
+  },
+  "channels": {
+    "Twitter": 3200,
+    "Facebook": 2100,
+    "News": 1800,
+    "Instagram": 1500,
+    "YouTube": 700,
+    "Blogs": 575
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "data": {
+    "all": [
+      {"name": "Marca Principal", "positive": 3275, "negative": 4500, "neutral": 2100, "total": 9875},
+      {"name": "Concorrente A", "positive": 2100, "negative": 3800, "neutral": 1500, "total": 7400},
+      {"name": "Concorrente B", "positive": 1800, "negative": 2900, "neutral": 1200, "total": 5900}
+    ],
+    "Twitter": [
+      {"name": "Marca Principal", "positive": 1200, "negative": 1800, "neutral": 700, "total": 3700},
+      {"name": "Concorrente A", "positive": 800, "negative": 1500, "neutral": 400, "total": 2700}
+    ]
+  }
+}
