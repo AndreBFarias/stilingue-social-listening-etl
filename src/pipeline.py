@@ -52,7 +52,9 @@ def _calcular_dias_faltantes() -> list[date]:
         "visao_geral", "sentimento_grupos", "sentimento_temas",
         "linechart", "publicacoes", "ranking_evolutivo",
     ]
-    datas_maximas: list[date] = []
+    todas_datas: set[date] = set()
+    datas_por_endpoint: dict[str, set[date]] = {}
+
     for ep in endpoints:
         pasta = config.OUTPUT_DIR / ep
         if not pasta.exists():
@@ -60,26 +62,27 @@ def _calcular_dias_faltantes() -> list[date]:
         csvs = list(pasta.glob("*.csv"))
         if not csvs:
             return []
-        datas_ep: list[date] = []
+        datas_ep: set[date] = set()
         for csv in csvs:
             try:
-                datas_ep.append(datetime.strptime(csv.stem, "%Y%m%d").date())
+                datas_ep.add(datetime.strptime(csv.stem, "%Y%m%d").date())
             except ValueError:
                 continue
         if not datas_ep:
             return []
-        datas_maximas.append(max(datas_ep))
+        datas_por_endpoint[ep] = datas_ep
+        todas_datas.update(datas_ep)
 
-    data_mais_recente = min(datas_maximas)
+    min_date = min(todas_datas)
     ontem = date.today() - timedelta(days=1)
 
-    if data_mais_recente >= ontem:
-        return []
-
     dias: list[date] = []
-    dia = data_mais_recente + timedelta(days=1)
+    dia = min_date
     while dia <= ontem:
-        dias.append(dia)
+        for ep in endpoints:
+            if dia not in datas_por_endpoint[ep]:
+                dias.append(dia)
+                break
         dia += timedelta(days=1)
 
     return dias
