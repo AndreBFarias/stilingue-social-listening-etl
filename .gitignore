@@ -9,13 +9,13 @@ venv/
 
 # Logs e dados
 logs/
-data/csv/**/*.csv
+data/csv/
+consolidado/
 
 # Build
 build/
 *.egg-info/
-dist/stilingue-etl/stilingue_etl
-dist/stilingue-etl/stilingue_etl.exe
+dist/
 
 # Secrets
 .env

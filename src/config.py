@@ -26,6 +26,7 @@ class Config:
     API_TOKEN: str = os.getenv("STILINGUE_API_TOKEN", "")
     BASE_URL: str = os.getenv("STILINGUE_BASE_URL", "https://api.stilingue.com.br")
     OUTPUT_DIR: Path = _BASE_DIR / os.getenv("OUTPUT_DIR", "./data/csv")
+    CONSOLIDADO_DIR: Path = _BASE_DIR / os.getenv("CONSOLIDADO_DIR", "./consolidado")
     LOG_DIR: Path = _BASE_DIR / os.getenv("LOG_DIR", "./logs")
     DAYS_BACK: int = int(os.getenv("DAYS_BACK", "1"))
     PUBLICATIONS_LIMIT: int = int(os.getenv("PUBLICATIONS_LIMIT", "100"))
@@ -42,6 +43,7 @@ class Config:
         if not cls.API_TOKEN:
             raise ValueError("STILINGUE_API_TOKEN nao configurado no .env")
         cls.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        cls.CONSOLIDADO_DIR.mkdir(parents=True, exist_ok=True)
         cls.LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 

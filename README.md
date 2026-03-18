@@ -1,6 +1,6 @@
-# Stilingue Social Listening ETL
+# Stilingue-Energisa ETL
 
-Pipeline ETL que consome a API REST do Stilingue (social listening), transforma os dados e gera arquivos CSV estruturados para alimentar dashboards.
+Pipeline ETL que consome a API REST do Stilingue (social listening), transforma os dados e gera arquivos CSV estruturados para alimentar dashboards Power BI de Social Listening da Energisa.
 
 ## Pré-requisitos
 
@@ -12,7 +12,7 @@ Pipeline ETL que consome a API REST do Stilingue (social listening), transforma 
 
 ```bash
 git clone <repo-url>
-cd stilingue-social-listening-etl
+cd stilingue-energisa-etl
 ./install.sh
 ```
 
@@ -46,7 +46,7 @@ Para voltar ao modo normal (dia anterior), deixe as variáveis vazias ou remova-
 ### Linux (cron)
 
 ```bash
-0 6 * * * /caminho/para/stilingue-social-listening-etl/run.sh >> /caminho/para/logs/cron.log 2>&1
+0 6 * * * /caminho/para/stilingue-energisa-etl/run.sh >> /caminho/para/logs/cron.log 2>&1
 ```
 
 ### Windows (Task Scheduler)
@@ -60,7 +60,7 @@ Execute como administrador:
 ## Estrutura de pastas
 
 ```
-stilingue-social-listening-etl/
+stilingue-energisa-etl/
   src/
     config.py              # Configuração via .env
     api/
@@ -119,9 +119,3 @@ stilingue-social-listening-etl/
 - Textos de publicações podem conter dados pessoais. Os CSVs gerados devem ser tratados como dados sensíveis conforme LGPD.
 - A API pode retornar campos de texto vazios quando a plataforma aplica anonimização. Isso é comportamento esperado.
 - Restrinja o acesso aos diretórios `data/csv/` e `logs/` apenas a usuários autorizados.
-
----
-
-## Licença
-
-Distribuído sob a [GPLv3](LICENSE).

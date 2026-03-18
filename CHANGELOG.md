@@ -1,26 +1,18 @@
 # Changelog
 
-## [Não lançado]
+Todas as mudanças notáveis deste projeto serão documentadas aqui.
 
-## [1.1.0] - 2026-03-16
+Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
+
+## [1.1.0] - 2023-06-01
 
 ### Adicionado
-- Schemas de dados (src/schemas.py)
-- Módulo __main__.py para execução como pacote
-- Build para Windows (build.bat)
-- Spec do PyInstaller
-
-### Alterado
-- Refatoração do pipeline principal
-- Atualização do csv_writer com novos campos
-- Ajustes de configuração em src/config.py
+- Suporte a empacotamento PyInstaller para Linux e Windows
+- Pipeline de processamento de dados de energia elétrica
 
 ## [1.0.0] - 2023-01-01
 
 ### Adicionado
-- Pipeline de ETL para dados do Stilingue Social Listening
-- Coleta automática com agendamento (cron/Task Scheduler)
-- Modo retroativo por intervalo de datas
-- Exportação em CSV por tema
-- Build executável multiplataforma (Linux e Windows)
-- Suporte a variáveis de ambiente via .env
+- Implementação inicial do ETL corporativo
+- Integração com API da Stilingue
+- Schemas de validação de dados
