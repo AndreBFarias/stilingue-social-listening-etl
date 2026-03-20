@@ -36,6 +36,7 @@ class Config:
     TEMAS_LIMIT: int = int(os.getenv("TEMAS_LIMIT", "50"))
     BACKFILL_DAYS: int = int(os.getenv("BACKFILL_DAYS", "90"))
     CONSOLIDADO_DATA_MINIMA: date = _parse_date(os.getenv("CONSOLIDADO_DATA_MINIMA", "2026-01-01"))
+    CONSOLIDADO_FORMATO: str = os.getenv("CONSOLIDADO_FORMATO", "csv").lower().strip()
     RETROATIVO_INICIO: date | None = _parse_date(os.getenv("RETROATIVO_INICIO", ""))
     RETROATIVO_FIM: date | None = _parse_date(os.getenv("RETROATIVO_FIM", ""))
 
@@ -43,6 +44,11 @@ class Config:
     def validate(cls) -> None:
         if not cls.API_TOKEN:
             raise ValueError("STILINGUE_API_TOKEN nao configurado no .env")
+        if cls.CONSOLIDADO_FORMATO not in ("csv", "parquet"):
+            raise ValueError(
+                f"CONSOLIDADO_FORMATO invalido: '{cls.CONSOLIDADO_FORMATO}'. "
+                "Valores aceitos: csv, parquet"
+            )
         cls.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         cls.CONSOLIDADO_DIR.mkdir(parents=True, exist_ok=True)
         cls.LOG_DIR.mkdir(parents=True, exist_ok=True)

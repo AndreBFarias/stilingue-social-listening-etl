@@ -18,8 +18,19 @@ def _parsear_data_arquivo(nome_arquivo: str) -> str | None:
         return None
 
 
+def _remover_formato_oposto(saida: Path) -> None:
+    if saida.suffix == ".parquet":
+        oposto = saida.with_suffix(".csv")
+    else:
+        oposto = saida.with_suffix(".parquet")
+    if oposto.exists():
+        oposto.unlink()
+        logger.info(f"Removido consolidado obsoleto: {oposto}")
+
+
 def consolidar_endpoint(endpoint: str) -> Path:
-    saida = config.CONSOLIDADO_DIR / f"{endpoint}.csv"
+    fmt = config.CONSOLIDADO_FORMATO
+    saida = config.CONSOLIDADO_DIR / f"{endpoint}.{fmt}"
     pasta_endpoint = config.OUTPUT_DIR / endpoint
     data_minima = config.CONSOLIDADO_DATA_MINIMA.isoformat()
 
@@ -52,10 +63,16 @@ def consolidar_endpoint(endpoint: str) -> Path:
     if saida.exists():
         saida.unlink()
 
-    df_final.to_csv(saida, index=False, encoding="utf-8-sig")
+    if fmt == "parquet":
+        df_final.to_parquet(saida, index=False, engine="pyarrow")
+    else:
+        df_final.to_csv(saida, index=False, encoding="utf-8-sig")
+
+    _remover_formato_oposto(saida)
+
     logger.info(
         f"{endpoint}: consolidado recriado com {len(df_final)} linhas "
-        f"(data >= {data_minima}) em {saida}"
+        f"(data >= {data_minima}, formato: {fmt}) em {saida}"
     )
     return saida
 
