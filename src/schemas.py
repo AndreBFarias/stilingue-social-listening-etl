@@ -85,6 +85,15 @@ DEDUP_KEYS: dict[str, list[str]] = {
     "publicacoes": ["pid"],
 }
 
+COLUNAS_DATA: dict[str, list[str]] = {
+    "visao_geral": ["data_referencia", "data_extracao"],
+    "sentimento_grupos": ["data_referencia"],
+    "sentimento_temas": ["data_referencia"],
+    "linechart": ["data_referencia"],
+    "publicacoes": ["data_referencia", "data_publicacao", "data_extracao"],
+    "ranking_evolutivo": ["data_referencia"],
+}
+
 DEFAULTS_BY_TYPE: dict[type, object] = {
     int: 0,
     float: 0.0,

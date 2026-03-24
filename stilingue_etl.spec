@@ -34,6 +34,7 @@ a = Analysis(
         "src.extractors.ranking_evolutivo",
         "src.loaders",
         "src.loaders.csv_writer",
+        "src.loaders.consolidador",
         "src.transformers",
         "src.transformers.transformers",
     ],
