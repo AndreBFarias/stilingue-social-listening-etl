@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset Streamlit chrome */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header[data-testid="stHeader"] {visibility: hidden;}
+.stDeployButton {display: none;}
+
+[data-testid="stToolbar"] {display: none;}
+
+/* Corpo principal */
+.stApp {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, sans-serif;
+    background-color: #F5F5F5;
+}
+
+.main .block-container {
+    padding: 1rem 2rem 2rem 2rem;
+    max-width: 1360px;
+}
+
+/* Header com logo e navegacao */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0 0 0;
+    margin-bottom: 0.25rem;
+}
+
+.header-logo img {
+    height: 40px;
+    object-fit: contain;
+}
+
+.header-titulo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2C3E50;
+    letter-spacing: -0.3px;
+}
+
+/* Barra de navegacao */
+.nav-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+/* Botoes de navegacao */
+div[data-testid="stHorizontalBlock"] > div > div > .stButton > button {
+    border: none;
+    border-radius: 8px;
+    padding: 0.55rem 1.5rem;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    color: white;
+}
+
+div[data-testid="stHorizontalBlock"] > div > div > .stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Cards KPI */
+.card-kpi {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem 0.9rem 1.2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.04);
+    min-height: 100px;
+}
+
+.card-kpi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+}
+
+.card-kpi .card-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 0.35rem;
+}
+
+.card-kpi .card-valor {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #2C3E50;
+    line-height: 1.15;
+    margin-bottom: 0.2rem;
+}
+
+.card-kpi .card-delta {
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+.card-kpi .card-delta.positivo {
+    color: #2ECC71;
+}
+
+.card-kpi .card-delta.negativo {
+    color: #E74C3C;
+}
+
+/* Containers de grafico */
+.grafico-container {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 1rem 0.8rem 0.5rem 0.8rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    margin-bottom: 1rem;
+}
+
+.grafico-titulo {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4A4A4A;
+    margin: 0 0 0.3rem 0.3rem;
+    padding: 0;
+}
+
+/* Tabelas */
+.tabela-container {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 0.8rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    overflow-x: auto;
+}
+
+.tabela-estilizada {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 0.78rem;
+}
+
+.tabela-estilizada thead th {
+    background: #4A4A4A;
+    color: #FFFFFF;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    position: sticky;
+    top: 0;
+}
+
+.tabela-estilizada thead th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.tabela-estilizada thead th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.tabela-estilizada tbody td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid #F0F0F0;
+    color: #333333;
+}
+
+.tabela-estilizada tbody tr:hover {
+    background: #FAFAFA;
+}
+
+.tabela-estilizada tbody tr:nth-child(even) {
+    background: #FCFCFC;
+}
+
+/* Badge sentimento */
+.badge-sentimento {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+}
+
+.badge-sentimento.positivo { background: #2ECC71; }
+.badge-sentimento.neutro { background: #F1C40F; color: #333; }
+.badge-sentimento.negativo { background: #E74C3C; }
+
+/* Filtros / slicers */
+.stSelectbox > div > div {
+    border-radius: 8px;
+}
+
+.stSlider > div > div > div {
+    color: #E87722;
+}
+
+/* Separador de secao */
+.secao-titulo {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 1rem 0 0.5rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid #E87722;
+    display: inline-block;
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F5F5F5;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #CCC;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Storytelling */
+.storytelling {
+    font-size: 0.78rem;
+    color: #888888;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
